@@ -1,10 +1,27 @@
 package com.dio.santander.bankline.api.model;
 
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "tab_correntista")
 public class Correntista {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY) //vai criar uma chave unica para cada registro inseridp
 	private Integer id;
+	
+	@Column(length = 11)
 	private String cpf;
+	
+	@Column(length = 60)
 	private String nome;
 	
+	@Embedded     	//as informacoes que estiverem nesta classe estarao na mesma tabela principal, que possui referencia
 	private Conta conta;
 	public Conta getConta() {
 		return conta;
